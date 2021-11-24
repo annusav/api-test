@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
+    <style>
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-image: url('https://source.unsplash.com/random/1600x900');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        .container {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            opacity: 0.7;
+            border-radius: 25px;
+        }
+        .container:hover {
+            opacity: 0.9;
+            transition: 0.3s;
+        }
+
+        .quoteBx {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        #authr {
+            font-style: italic;
+        }
+
+        .credit {
+            font-size: 1em;
+            color: #FFF;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+        .credit a {
+            color: #FFF;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="container">
+        <div class="quoteBx">
+            <blockquote>&ldquo;<span id="quote"></span>&rdquo;<footer>&mdash; <span id="authr"></span></footer>
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="credit">
+        <p>Quotes powered by <a href="https://github.com/natetyler/wikiquotes-api">the wikiquotes-api</a><br>
+            Photos powered by <a href="https://source.unsplash.com/">the Unsplash Source API</a></p>
+    </div>
+
+
+
+    <script type="text/javascript">
+
+        const api_url = "https://api.quotable.io/random";
+        async function getapi(url) {
+            const response = await fetch(url);
+            var data = await response.json();
+            const { content, author } = data;
+            document.getElementById('quote').textContent = content;
+            document.getElementById('authr').textContent = author;
+        }
+        getapi(api_url);
+
+    </script>
+
+</body>
+
+
+</html>
